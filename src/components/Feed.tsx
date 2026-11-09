@@ -53,16 +53,19 @@ export function Feed({
   return (
     <div className="feed">
       {showWelcome && (
-        <section className="welcome panel" aria-label="О сообществе">
-          <div className="welcome-text">
-            <span className="welcome-eyebrow">независимое русскоязычное сообщество</span>
-            <h1 className="welcome-title">
-              Тёмный зал, тёплый свет — и разговоры,<br className="welcome-break" />
-              за которые не стыдно <em>утром</em>.
+        <section className="masthead" aria-label="О сообществе">
+          <div className="masthead-text">
+            <span className="masthead-kicker">
+              <span className="live-dot" aria-hidden="true" />
+              margan.live · живой эфир сообщества
+            </span>
+            <h1 className="masthead-title">
+              Здесь разговаривают,<br />
+              <em>а не торгуют.</em>
             </h1>
-            <p className="welcome-sub">
-              Здесь не продают и не вставляют рекламу: только люди, опыт и темы про технологии,
-              разработку и цифровую жизнь — с чашкой чая и в хорошей компании.
+            <p className="masthead-sub">
+              Русскоязычный форум о технологиях и цифровой жизни. Никаких маркетплейсов
+              и рекламных вставок — только опыт, аргументы и разговоры после десяти вечера.
             </p>
             <div className="welcome-actions">
               <button type="button" className="btn btn--soft" onClick={onAbout}>
@@ -75,13 +78,16 @@ export function Feed({
               </button>
             </div>
           </div>
-          <svg className="welcome-art" viewBox="0 0 200 150" aria-hidden="true">
-            <circle cx="150" cy="52" r="44" fill="none" stroke="#3b2f63" strokeWidth="1.4" strokeDasharray="3 6" />
-            <circle cx="150" cy="52" r="30" fill="#241d3a" stroke="#8b5cf6" strokeWidth="1.6" />
-            <path d="M150 22a30 30 0 0 1 0 60z" fill="#8b5cf6" opacity="0.82" />
-            <circle cx="150" cy="52" r="5" fill="#ece8f6" />
-            <path d="M28 118h72M28 96h44M28 140h96" stroke="#2e2649" strokeWidth="5" strokeLinecap="round" />
-            <path d="M28 118h32" stroke="#a78bfa" strokeWidth="5" strokeLinecap="round" />
+          <svg className="masthead-art" viewBox="0 0 180 160" aria-hidden="true">
+            <circle cx="90" cy="72" r="62" fill="none" stroke="#2c2544" strokeWidth="1.2" strokeDasharray="2.5 7" />
+            <circle cx="90" cy="72" r="40" fill="none" stroke="#38304f" strokeWidth="1" />
+            <line x1="14" y1="138" x2="166" y2="138" stroke="#2c2544" strokeWidth="1.6" />
+            <rect className="eq-bar eq-bar--1" x="30" y="112" width="14" height="26" rx="2" fill="#5b3fd6" />
+            <rect className="eq-bar eq-bar--2" x="54" y="64" width="14" height="74" rx="2" fill="#7c3aed" />
+            <rect className="eq-bar eq-bar--3" x="78" y="90" width="14" height="48" rx="2" fill="#a78bfa" />
+            <rect className="eq-bar eq-bar--4" x="102" y="36" width="14" height="102" rx="2" fill="#8b5cf6" />
+            <rect className="eq-bar eq-bar--1" x="126" y="100" width="14" height="38" rx="2" fill="#c4b5fd" />
+            <circle className="live-dot" cx="152" cy="22" r="5" fill="#a78bfa" />
           </svg>
         </section>
       )}
@@ -103,6 +109,7 @@ export function Feed({
             </button>
           ))}
         </div>
+        <span className="feed-rule" aria-hidden="true" />
       </div>
 
       {filtersActive && (
@@ -127,9 +134,10 @@ export function Feed({
         </div>
       ) : (
         <div className="topic-list">
-          {entries.map(({ topic, postsCount, views, reactionsTotal, isUserTopic, isBookmarked }) => (
+          {entries.map(({ topic, postsCount, views, reactionsTotal, isUserTopic, isBookmarked }, index) => (
             <TopicCard
               key={topic.id}
+              index={index + 1}
               topic={topic}
               postsCount={postsCount}
               views={views}

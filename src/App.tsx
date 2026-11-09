@@ -426,12 +426,15 @@ export default function App() {
       <footer className="footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <svg className="footer-mark" viewBox="0 0 64 64" aria-hidden="true">
-              <circle cx="32" cy="32" r="16" fill="none" stroke="#a78bfa" strokeWidth="3.4" />
-              <path d="M32 16a16 16 0 0 1 0 32z" fill="#8b5cf6" />
+            <svg className="footer-mark" viewBox="0 0 44 36" aria-hidden="true">
+              <line x1="2" y1="34" x2="42" y2="34" stroke="#2c2544" strokeWidth="2" />
+              <rect x="6" y="22" width="5.5" height="12" rx="1" fill="#7c3aed" />
+              <rect x="15" y="12" width="5.5" height="22" rx="1" fill="#8b5cf6" />
+              <rect x="24" y="17" width="5.5" height="17" rx="1" fill="#a78bfa" />
+              <rect x="33" y="7" width="5.5" height="27" rx="1" fill="#c4b5fd" />
             </svg>
             <div>
-              <span className="footer-name">полу<em>тон</em></span>
+              <span className="footer-name">margan<em>.live</em></span>
               <span className="footer-tag">форум ночных разговоров</span>
             </div>
           </div>

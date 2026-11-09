@@ -165,7 +165,7 @@ export function AboutModal({ onClose }: { onClose: () => void }) {
       >
         <div className="modal-head">
           <div>
-            <h2 id="about-title">Как устроен Полутон</h2>
+            <h2 id="about-title">Как устроен margan.live</h2>
             <p className="modal-sub">Коротко, честно и без корпоративного тона.</p>
           </div>
           <button type="button" className="icon-btn" onClick={onClose} aria-label="Закрыть">
@@ -184,7 +184,7 @@ export function AboutModal({ onClose }: { onClose: () => void }) {
             ))}
           </ul>
           <p className="about-note">
-            Сейчас Полутон живёт в вашем браузере: темы, ответы и реакции сохраняются локально.
+            Сейчас margan.live живёт в вашем браузере: темы, ответы и реакции сохраняются локально.
             Сервер и настоящая регистрация — следующий шаг, когда сообществу станет тесно в одном окне.
           </p>
         </div>
