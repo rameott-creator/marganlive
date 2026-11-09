@@ -20,7 +20,32 @@ npm run preview    # http://localhost:4173
 
 ## Заливка на VDS (piasdad.duckdns.org)
 
-Сайт — статика из `dist/`, поэтому деплоим именно её:
+Сайт — статика из `dist/`, поэтому деплоим именно её.
+
+### Вариант А — всё прямо на сервере (удобно с телефона/без Node на компьютере)
+
+```bash
+ssh root@piasdad.duckdns.org
+apt update && apt install -y nodejs npm   # один раз
+git clone https://github.com/rameott-creator/marganlive.git
+cd marganlive && npm install && npm run build
+rsync -avz --delete dist/ /var/www/html/
+```
+
+Для приватного репозитория clone по HTTPS запросит логин — нужен токен или SSH-ключ.
+Проще всего: сделать репозиторий публичным (GitHub → Settings → General → Danger Zone →
+Change visibility → Make public) — тогда clone анонимный и токен не нужен.
+Альтернатива без раскрытия репо: на сервере `ssh-keygen -t ed25519 -N "" -f ~/.ssh/deploy`,
+добавить `~/.ssh/deploy.pub` в Settings → Deploy keys (галка read-only) и клонировать по
+`git@github.com:rameott-creator/marganlive.git`.
+
+Для ОБНОВЛЕНИЯ после мержа в main:
+
+```bash
+cd ~/marganlive && git pull && npm install && npm run build && rsync -avz --delete dist/ /var/www/html/
+```
+
+### Вариант Б — сборка на своём компьютере, заливка на сервер
 
 ```bash
 npm run build
