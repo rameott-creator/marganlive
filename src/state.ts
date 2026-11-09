@@ -25,11 +25,12 @@ export const DEFAULT_USER_STATE: UserState = {
   notifyReplies: true,
 };
 
-const KEY = 'poluton-state-v1';
+const KEY = 'marganlive-state-v1';
+const LEGACY_KEY = 'poluton-state-v1';
 
 function load(): UserState {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY);
     if (!raw) return DEFAULT_USER_STATE;
     const parsed = JSON.parse(raw) as Partial<UserState>;
     return { ...DEFAULT_USER_STATE, ...parsed };

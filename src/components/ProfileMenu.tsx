@@ -97,7 +97,7 @@ export function ProfileMenu({
 
           <div className="rep-progress" aria-label={`До следующего значка: ${left} репутации`}>
             <div className="rep-progress-top">
-              <span>До значка «Серебряный полутон»</span>
+              <span>До значка «Серебряное живое»</span>
               <span>осталось {left}</span>
             </div>
             <div className="rep-bar">

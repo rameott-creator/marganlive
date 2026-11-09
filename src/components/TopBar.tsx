@@ -1,4 +1,5 @@
 import { Icon } from './Icon';
+import { EqBars } from './EqBars';
 import { NotificationsMenu } from './NotificationsMenu';
 import { ProfileMenu } from './ProfileMenu';
 import type { Notification } from '../data/forum';
@@ -26,18 +27,33 @@ interface TopBarProps {
   };
 }
 
+const TICKER_ITEMS = [
+  'live · 214 на форуме',
+  '132 тем за неделю',
+  '318 сообщений сегодня',
+  'пик активности после 22:00',
+  'пятничное АМА — 23:00 по МСК',
+];
+
+function Ticker() {
+  const line = TICKER_ITEMS.join('   ◆   ');
+  return (
+    <div className="ticker" aria-hidden="true">
+      <div className="ticker-inner">
+        <span className="ticker-text">{line}</span>
+        <span className="ticker-text">{line}</span>
+      </div>
+    </div>
+  );
+}
+
 function Wordmark({ onHome }: { onHome: () => void }) {
   return (
-    <button type="button" className="wordmark" onClick={onHome} aria-label="Полутон — на главную">
-      <svg className="wordmark-mark" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="15" fill="#1e1830" />
-        <circle cx="32" cy="32" r="15" fill="none" stroke="#a78bfa" strokeWidth="3.4" />
-        <path d="M32 17a15 15 0 0 1 0 30z" fill="#8b5cf6" />
-        <circle cx="32" cy="32" r="3.2" fill="#ece8f6" />
-      </svg>
+    <button type="button" className="wordmark" onClick={onHome} aria-label="margan.live — на главную">
+      <EqBars size={34} className="wordmark-eq" />
       <span className="wordmark-text">
         <span className="wordmark-name">
-          полу<em>тон</em>
+          margan<em>.live</em>
         </span>
         <span className="wordmark-tag">форум ночных разговоров</span>
       </span>
@@ -47,47 +63,50 @@ function Wordmark({ onHome }: { onHome: () => void }) {
 
 export function TopBar({ query, onQueryChange, onCreateTopic, onHome, notif, profile }: TopBarProps) {
   return (
-    <header className="topbar">
-      <div className="topbar-inner">
-        <Wordmark onHome={onHome} />
+    <>
+      <Ticker />
+      <header className="topbar">
+        <div className="topbar-inner">
+          <Wordmark onHome={onHome} />
 
-        <label className="search" htmlFor="site-search">
-          <Icon name="search" size={17} className="search-icon" />
-          <input
-            id="site-search"
-            type="text"
-            value={query}
-            onChange={(e) => onQueryChange(e.target.value)}
-            placeholder="Поиск тем и авторов…"
-            autoComplete="off"
-            spellCheck={false}
-          />
-          <kbd className="search-kbd">/</kbd>
-        </label>
+          <label className="search" htmlFor="site-search">
+            <Icon name="search" size={17} className="search-icon" />
+            <input
+              id="site-search"
+              type="text"
+              value={query}
+              onChange={(e) => onQueryChange(e.target.value)}
+              placeholder="Поиск тем и авторов…"
+              autoComplete="off"
+              spellCheck={false}
+            />
+            <kbd className="search-kbd">/</kbd>
+          </label>
 
-        <div className="topbar-actions">
-          <button type="button" className="btn btn--primary btn--create" onClick={onCreateTopic}>
-            <Icon name="plus" size={17} />
-            <span>Создать тему</span>
-          </button>
-          <NotificationsMenu
-            notifications={notif.notifications}
-            readIds={notif.readIds}
-            onConsume={notif.onConsume}
-            onMarkAllRead={notif.onMarkAllRead}
-          />
-          <ProfileMenu
-            topicsCount={profile.topicsCount}
-            answersCount={profile.answersCount}
-            bookmarksCount={profile.bookmarksCount}
-            compact={profile.compact}
-            notifyReplies={profile.notifyReplies}
-            onToggleCompact={profile.onToggleCompact}
-            onToggleNotifyReplies={profile.onToggleNotifyReplies}
-            onSignOut={profile.onSignOut}
-          />
+          <div className="topbar-actions">
+            <button type="button" className="btn btn--primary btn--create" onClick={onCreateTopic}>
+              <Icon name="plus" size={17} />
+              <span>Создать тему</span>
+            </button>
+            <NotificationsMenu
+              notifications={notif.notifications}
+              readIds={notif.readIds}
+              onConsume={notif.onConsume}
+              onMarkAllRead={notif.onMarkAllRead}
+            />
+            <ProfileMenu
+              topicsCount={profile.topicsCount}
+              answersCount={profile.answersCount}
+              bookmarksCount={profile.bookmarksCount}
+              compact={profile.compact}
+              notifyReplies={profile.notifyReplies}
+              onToggleCompact={profile.onToggleCompact}
+              onToggleNotifyReplies={profile.onToggleNotifyReplies}
+              onSignOut={profile.onSignOut}
+            />
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }

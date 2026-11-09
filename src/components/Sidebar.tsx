@@ -1,4 +1,5 @@
 import { Icon } from './Icon';
+import { EqBars } from './EqBars';
 import { Avatar } from './Avatar';
 import {
   authorById,
@@ -26,8 +27,8 @@ export function Sidebar({ hot, onOpenTopic, onAbout }: SidebarProps) {
     <aside className="col-right" aria-label="Пока вы здесь">
       <section className="panel panel--hot">
         <div className="panel-title">
-          <Icon name="trending" size={15} />
-          В движении сейчас
+          <EqBars size={14} className="panel-title-eq" />
+          Сейчас в движении
         </div>
         <ol className="hot-list">
           {hot.map(({ topic, views, postsCount }, index) => {
@@ -105,7 +106,7 @@ export function Sidebar({ hot, onOpenTopic, onAbout }: SidebarProps) {
           Независимый форум: без рекламы и маркетплейсов, модерация вручную и по человечески.
         </p>
         <button type="button" className="link-btn" onClick={onAbout}>
-          Как устроен Полутон
+          Как устроен margan.live
           <Icon name="chevronRight" size={15} />
         </button>
       </div>
